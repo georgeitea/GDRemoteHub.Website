@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="el">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>GDRemoteHub</title>
+  <style>
+    :root{
+      --bg:#0f1724;
+      --card:#0b1220;
+      --accent:#7c5cff;
+      --muted:#9aa4bf;
+      --glass: rgba(255,255,255,0.03);
+      --radius:16px;
+      font-family: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI",
+                   Roboto, "Helvetica Neue", Arial;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background:
+        radial-gradient(1200px 600px at 10% 20%, rgba(124,92,255,0.12), transparent 8%),
+        radial-gradient(800px 400px at 90% 80%, rgba(0,200,255,0.06), transparent 12%),
+        var(--bg);
+      color:#e6eef8;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      padding:32px;
+    }
+
+    .card{
+      width:min(820px,96vw);
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), transparent);
+      border-radius:var(--radius);
+      padding:28px;
+      box-shadow: 0 10px 30px rgba(2,6,23,0.6);
+      border: 1px solid rgba(255,255,255,0.03);
+      display:grid;
+      grid-template-columns: 1fr 320px;
+      gap:20px;
+      align-items:center;
+    }
+
+    .left h1{
+      margin:0 0 8px 0;
+      font-size:28px;
+      letter-spacing:-0.02em;
+    }
+    .left p{
+      margin:0 0 18px 0;
+      color:var(--muted);
+      line-height:1.5;
+    }
+
+    .meta{
+      display:flex;
+      gap:10px;
+      align-items:center;
+      flex-wrap:wrap;
+    }
+
+    .tag{
+      background:var(--glass);
+      padding:8px 12px;
+      border-radius:12px;
+      font-size:13px;
+      color:var(--muted);
+      border:1px solid rgba(255,255,255,0.02);
+    }
+
+    .right{
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+      align-items:center;
+      justify-content:center;
+      padding:18px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.01), transparent);
+      border-radius:12px;
+      border:1px solid rgba(255,255,255,0.02);
+    }
+
+    .download-btn{
+      display:inline-flex;
+      align-items:center;
+      gap:12px;
+      text-decoration:none;
+      padding:14px 18px;
+      border-radius:12px;
+      font-weight:600;
+      background: linear-gradient(90deg, var(--accent), #4aa6ff 140%);
+      color:white;
+      box-shadow: 0 8px 24px rgba(124,92,255,0.18), inset 0 -2px 8px rgba(0,0,0,0.12);
+      transition: transform .14s ease, box-shadow .14s ease;
+    }
+    .download-btn:active{ transform: translateY(1px); }
+    .hint{
+      font-size:13px;
+      color:var(--muted);
+      text-align:center;
+      max-width:260px;
+    }
+
+    footer{
+      grid-column:1/-1;
+      margin-top:6px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      color:var(--muted);
+      font-size:13px;
+    }
+
+    /* responsive */
+    @media (max-width:760px){
+      .card{ grid-template-columns: 1fr; padding:20px; }
+      .right{ order:-1; width:100%; }
+      footer{ flex-direction:column; gap:8px; align-items:flex-start; }
+    }
+  </style>
+</head>
+<body>
+  <div class="card" role="region" aria-label="Download card">
+    <div class="left">
+      <h1>Κατέβασε το project σου από GitHub</h1>
+      <p>Πάτησε το κουμπί για να κατεβάσεις αμέσως το repository σου σαν αρχείο .zip. Αν προτιμάς να κατεβάσεις ένα μόνο αρχείο, διάβασε τις οδηγίες κάτω από το κουμπί.</p>
+
+      <div class="meta">
+        <div class="tag">GitHub archive (.zip)</div>
+        <div class="tag">Customisable</div>
+        <div class="tag">Responsive</div>
+      </div>
+    </div>
+
+    <div class="right" aria-hidden="false">
+      <!-- ====== ΑΛΛΑΞΕ ΤΟ LINK ΕΔΩ: ======
+           https://github.com/USERNAME/REPO/archive/refs/heads/main.zip
+           --> 
+      <a class="download-btn" id="downloadLink"
+         href="https://github.com/georgeitea/my_flask_app.git"
+         download>
+        ⤓ Κατέβασε το repository (ZIP)
+      </a>
+
+      <div class="hint">
+        Αν το repo σου έχει άλλο branch (π.χ. <code>master</code>), άλλαξε το τέλος του URL σε
+        <code>.../archive/refs/heads/master.zip</code>.
+      </div>
+    </div>
+
+    <footer>
+      <div>Θες άλλη μορφή; — <strong>raw single file</strong> ή <strong>direct download</strong> από release; μπορώ να στο φτιάξω.</div>
+      <div>Αντικατάστησε <code>USERNAME</code> &amp; <code>REPO</code> στο link.</div>
+    </footer>
+  </div>
+</body>
+</html>
